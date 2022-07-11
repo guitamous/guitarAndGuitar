@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="abc">
+        <p id="IDpoint">0</p>
+    </div>
+
+    <p id="IDnut"></p>
+    <input type="button" id="IDbuy" value="00">
+    <input type="button" id="IDclick" value="누르면 올름">
+    <input type="button" id="IDup" value="올리기 업그레이드">
+    <p id="IDupup"></p>
+
+
+    <script>
+
+    let point = 0;
+    let secUp = 10;
+    let buyCost = 500;
+    let upup = 1;
+    let upupCost = 10;
+    document.getElementById('IDbuy').value = `초당금액 올리기 ${buyCost}`;
+    document.getElementById('IDup').value = `클릭업 : ${upupCost}`;
+    document.getElementById('IDclick').value = `누르면 : ${upup}오름`;
+
+
+    document.getElementById('IDbuy').addEventListener('click', haa );
+    document.getElementById('IDclick').addEventListener('click', hab );
+    document.getElementById('IDup').addEventListener('click', hac );
+
+    //기본적으로 빨리올라가게
+    function haa() {
+        if (point > buyCost){
+            point -= buyCost;
+            secUp += buyCost*0.05;
+            buyCost += Math.round(buyCost*0.5);
+            document.getElementById('IDbuy').value = `초당금액 올리기 ${buyCost}`
+        } else {
+            nut();
+        }
+    }
+
+    function hac() {
+        if (point > upupCost){
+            point -= upupCost;
+            upup += 1;
+            upupCost += upupCost; 
+            document.getElementById('IDup').value = `클릭업 : ${upupCost}`;
+            document.getElementById('IDclick').value = `누르면 : ${upup}오름`;
+        } else {
+            nut();
+        }
+    }
+
+    function nut(){
+        document.getElementById('IDnut').innerText = '모잘라요!!';
+        setTimeout(as,1000);
+       }
+    
+    function as(){
+        document.getElementById('IDnut').innerText = ' '
+    }
+
+
+    
+
+
+    function hab(){
+        point += upup;
+        
+    }
+
+
+    function fun(){
+    point += secUp/1000 ;
+    document.getElementById('IDpoint').innerText = Math.floor(point);
+    }
+
+
+  
+
+    
+    setInterval(fun ,1);
+    
+
+
+    </script>
+
+</body>
+</html>
